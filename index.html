@@ -306,78 +306,70 @@
 </div>
 
 <script>
-    const translations = {
-        en: {
-            title: "freelance developer",
-            services: [
-                {
-                    name: "Websites",
-                    short: "Full‑stack websites, landing pages, admin panels.",
-                    description: "I build fast, responsive websites with React, Vue or vanilla JS. Backend with Node.js, PHP or Python. SEO, mobile-first, animations, API integrations, databases. From simple business cards to complex web apps.",
-                    price: "from $500",
-                    duration: "delivery: 7-14 days"
-                },
-                {
-                    name: "Applications",
-                    short: "Desktop & mobile apps, cross‑platform solutions.",
-                    description: "Cross-platform apps using Flutter, React Native or Electron. Performance, clean UI, offline sync, notifications, payment integration. I ship applications for Windows, macOS, iOS and Android.",
-                    price: "from $800",
-                    duration: "delivery: 14-21 days"
-                },
-                {
-                    name: "Minecraft plugins",
-                    short: "Custom plugins for Spigot, Paper, Bukkit.",
-                    description: "Custom mechanics, minigames, economy, quests, custom mobs, advanced gui, anti-cheat modules, or anything you need for your server. I write optimized Java code and provide full support.",
-                    price: "from $200",
-                    duration: "delivery: 3-10 days"
-                },
-                {
-                    name: "Minecraft modpacks",
-                    short: "Optimized modpack builds, custom configs.",
-                    description: "I create stable, well-optimized modpacks for Forge/Fabric. Questlines, progression, balancing, server-ready packs, performance tweaks. I also help with custom mod integration and bug fixing.",
-                    price: "from $250",
-                    duration: "delivery: 5-14 days"
-                }
-            ]
-        },
-        ua: {
-            title: "фріланс розробник",
-            services: [
-                {
-                    name: "Вебсайти",
-                    short: "Повноцінні сайти, лендінги, адмін-панелі.",
-                    description: "Створюю швидкі сучасні сайти на React, Vue або чистому JS. Бекенд: Node.js, PHP, Python. SEO, адаптивність, анімації, інтеграція API, бази даних — від візитівки до великих вебзастосунків.",
-                    price: "від 500$",
-                    duration: "термін: 7-14 днів"
-                },
-                {
-                    name: "Програми",
-                    short: "Десктопні та мобільні застосунки.",
-                    description: "Кроссплатформені застосунки Flutter, React Native або Electron. Продуктивність, чистий UI, офлайн, пуші, платіжні системи. Розробляю під Windows, macOS, iOS та Android.",
-                    price: "від 800$",
-                    duration: "термін: 14-21 днів"
-                },
-                {
-                    name: "Плагіни Minecraft",
-                    short: "Плагіни для Spigot, Paper, Bukkit.",
-                    description: "Кастомна механіка, мініігри, економіка, квести, кастомні моби, GUI, античит або будь-яка ідея для твого сервера. Java-код, підтримка, оптимізація.",
-                    price: "від 200$",
-                    duration: "термін: 3-10 днів"
-                },
-                {
-                    name: "Збірки Minecraft",
-                    short: "Готові модпаки, налаштування, оптимізація.",
-                    description: "Роблю стабільні, оптимізовані збірки Forge/Fabric. Квести, прогресія, баланс, готові до сервера. Допомога з кастомними модами та виправлення багів.",
-                    price: "від 250$",
-                    duration: "термін: 5-14 днів"
-                }
-            ]
-        }
+    const productsData = {
+        en: [
+            {
+                name: "Websites",
+                shortDesc: "Full‑stack websites, landing pages, admin panels.",
+                fullDesc: "I build fast, responsive websites with React, Vue or vanilla JS. Backend with Node.js, PHP or Python. SEO, mobile-first, animations, API integrations, databases. From simple business cards to complex web apps.",
+                price: "from $500",
+                duration: "delivery: 7-14 days"
+            },
+            {
+                name: "Applications",
+                shortDesc: "Desktop & mobile apps, cross‑platform solutions.",
+                fullDesc: "Cross-platform apps using Flutter, React Native or Electron. Performance, clean UI, offline sync, notifications, payment integration. I ship applications for Windows, macOS, iOS and Android.",
+                price: "from $800",
+                duration: "delivery: 14-21 days"
+            },
+            {
+                name: "Minecraft plugins",
+                shortDesc: "Custom plugins for Spigot, Paper, Bukkit.",
+                fullDesc: "Custom mechanics, minigames, economy, quests, custom mobs, advanced gui, anti-cheat modules, or anything you need for your server. I write optimized Java code and provide full support.",
+                price: "from $200",
+                duration: "delivery: 3-10 days"
+            },
+            {
+                name: "Minecraft modpacks",
+                shortDesc: "Optimized modpack builds, custom configs.",
+                fullDesc: "I create stable, well-optimized modpacks for Forge/Fabric. Questlines, progression, balancing, server-ready packs, performance tweaks. I also help with custom mod integration and bug fixing.",
+                price: "from $250",
+                duration: "delivery: 5-14 days"
+            }
+        ],
+        ua: [
+            {
+                name: "Вебсайти",
+                shortDesc: "Повноцінні сайти, лендінги, адмін-панелі.",
+                fullDesc: "Створюю швидкі сучасні сайти на React, Vue або чистому JS. Бекенд: Node.js, PHP, Python. SEO, адаптивність, анімації, інтеграція API, бази даних — від візитівки до великих вебзастосунків.",
+                price: "від 500$",
+                duration: "термін: 7-14 днів"
+            },
+            {
+                name: "Програми",
+                shortDesc: "Десктопні та мобільні застосунки.",
+                fullDesc: "Кроссплатформені застосунки Flutter, React Native або Electron. Продуктивність, чистий UI, офлайн, пуші, платіжні системи. Розробляю під Windows, macOS, iOS та Android.",
+                price: "від 800$",
+                duration: "термін: 14-21 днів"
+            },
+            {
+                name: "Плагіни Minecraft",
+                shortDesc: "Плагіни для Spigot, Paper, Bukkit.",
+                fullDesc: "Кастомна механіка, мініігри, економіка, квести, кастомні моби, GUI, античит або будь-яка ідея для твого сервера. Java-код, підтримка, оптимізація.",
+                price: "від 200$",
+                duration: "термін: 3-10 днів"
+            },
+            {
+                name: "Збірки Minecraft",
+                shortDesc: "Готові модпаки, налаштування, оптимізація.",
+                fullDesc: "Роблю стабільні, оптимізовані збірки Forge/Fabric. Квести, прогресія, баланс, готові до сервера. Допомога з кастомними модами та виправлення багів.",
+                price: "від 250$",
+                duration: "термін: 5-14 днів"
+            }
+        ]
     };
 
     let currentLang = localStorage.getItem('lang') || 'en';
-    let currentServiceId = null;
-    let selectedServiceObj = null;
 
     function setLanguage(lang) {
         currentLang = lang;
@@ -393,21 +385,21 @@
     }
 
     function renderServices() {
-        const data = translations[currentLang];
+        const products = productsData[currentLang];
         const container = document.getElementById('services-grid');
         if (!container) return;
         
         container.innerHTML = '';
-        data.services.forEach((service, idx) => {
+        products.forEach((product, idx) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.setAttribute('data-idx', idx);
             card.innerHTML = `
                 <div class="card-icon">◧</div>
-                <h3>${escapeHtml(service.name)}</h3>
-                <p>${escapeHtml(service.short)}</p>
-                <div class="price">${escapeHtml(service.price)}</div>
-                <div class="duration">${escapeHtml(service.duration)}</div>
+                <h3>${escapeHtml(product.name)}</h3>
+                <p>${escapeHtml(product.shortDesc)}</p>
+                <div class="price">${escapeHtml(product.price)}</div>
+                <div class="duration">${escapeHtml(product.duration)}</div>
                 <div class="badge">details →</div>
             `;
             card.addEventListener('click', (e) => {
@@ -419,15 +411,12 @@
     }
 
     function openServiceModal(serviceIdx) {
-        const data = translations[currentLang];
-        const service = data.services[serviceIdx];
-        if (!service) return;
-        selectedServiceObj = service;
-        document.getElementById('modal-title').innerText = service.name;
-        document.getElementById('modal-description').innerHTML = service.description.replace(/\n/g, '<br>');
-        document.getElementById('modal-price').innerHTML = `<strong>Price:</strong> ${service.price}`;
-        document.getElementById('modal-duration').innerHTML = `<strong>Delivery:</strong> ${service.duration}`;
-        
+        const product = productsData[currentLang][serviceIdx];
+        if (!product) return;
+        document.getElementById('modal-title').innerText = product.name;
+        document.getElementById('modal-description').innerHTML = product.fullDesc.replace(/\n/g, '<br>');
+        document.getElementById('modal-price').innerHTML = `<strong>Price:</strong> ${product.price}`;
+        document.getElementById('modal-duration').innerHTML = `<strong>Delivery:</strong> ${product.duration}`;
         const modal = document.getElementById('service-modal');
         modal.style.display = 'flex';
     }
