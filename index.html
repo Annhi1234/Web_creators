@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A and I Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            background: #3b82f6;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav a, .nav button {
+            color: #cbd5e1;
+            text-decoration: none;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav a:hover, .nav button:hover {
+            color: #60a5fa;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #a5f3fc, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 320px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.5);
+            border-color: #3b82f6;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+
+        .card .price {
+            font-size: 1.5rem;
+            color: #fbbf24;
+            margin: 0.5rem 0;
+        }
+
+        .card .duration {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #cbd5e6;
+            line-height: 1.5;
+        }
+
+        .card .details-btn {
+            margin-top: 1rem;
+            background: #4f46e5;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid #334155;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+
+        .close-modal:hover {
+            color: #ef4444;
+        }
+
+        .auth-container {
+            background: #1e293b;
+            border-radius: 2rem;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .auth-container input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 1rem;
+            border: none;
+            background: #0f172a;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .auth-container input:focus {
+            outline: 2px solid #3b82f6;
+        }
+
+        .auth-container button {
+            background: #3b82f6;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 2rem;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .auth-container button:hover {
+            background: #2563eb;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .about-section {
+            background: rgba(15, 23, 42, 0.7);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px solid #334155;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #a5f3fc;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .admin-section {
+            background: #0f172a;
+            margin: 2rem;
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid #334155;
+        }
+
+        .admin-form {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .admin-form input, .admin-form textarea {
+            padding: 0.7rem;
+            border-radius: 1rem;
+            border: none;
+            background: #1e293b;
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .admin-form button {
+            background: #10b981;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .admin-item {
+            background: #1e293b;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-item button {
+            background: #ef4444;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            color: white;
+            margin-left: 0.5rem;
+        }
+
+        .admin-item .edit-btn {
+            background: #3b82f6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 700px) {
+            .top-bar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .cards .card {
+                width: 100%;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="lang-switch">
+        <button onclick="setLanguage('en')" class="lang-btn">EN</button>
+        <button onclick="setLanguage('ua')" class="lang-btn">UA</button>
+    </div>
+    <div class="nav" id="nav-links">
+        <a href="#" onclick="scrollToTop()">A and I Studio</a>
+        <a href="#" onclick="scrollToAbout()" id="about-nav">About Us</a>
+        <span id="auth-buttons">
+            <button onclick="showLoginModal()" id="login-nav">Login</button>
+            <button onclick="showRegisterModal()" id="register-nav">Register</button>
+        </span>
+        <span id="user-info" style="display:none;">
+            <span id="welcome-user"></span>
+            <button onclick="logout()" id="logout-nav">Logout</button>
+            <button onclick="toggleAdminPanel()" id="admin-nav" style="display:none;">Admin Panel</button>
+        </span>
+    </div>
+</div>
+
+<div id="home-page">
+    <div class="hero">
+        <h1>A and I Studio</h1>
+        <p class="hero-subtitle" id="hero-text">Turning ideas into digital reality</p>
+    </div>
+
+    <div id="products-container" class="cards">
+        <div class="loading">Loading products...</div>
+    </div>
+
+    <div class="about-section" id="about-section">
+        <h2 id="about-title">About Us</h2>
+        <p id="about-text-1">We are a team of professionals creating websites, applications and design since 2019. Client focus, innovation and aesthetics are our main principles.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>2025 A and I Studio</p>
+</div>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProductModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description" style="margin: 1rem 0; line-height: 1.6;"></p>
+        <p><strong id="price-label">Price:</strong> <span id="modal-price"></span> UAH</p>
+        <p><strong id="duration-label">Duration:</strong> <span id="modal-duration"></span></p>
+    </div>
+</div>
+
+<div id="loginModal" class="modal">
+    <div class="auth-container">
+        <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+        <h2 id="login-title">Login</h2>
+        <input type="text" id="login-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()" id="login-btn">Login</button>
+        <div id="login-error" class="error-msg"></div>
+    </div>
+</div>
+
+<div id="registerModal" class="modal">
+    <div class="auth-container">
+        <span class="close-modal" onclick="closeRegisterModal()">&times;</span>
+        <h2 id="register-title">Register</h2>
+        <input type="text" id="register-username" placeholder="Username">
+        <input type="password" id="register-password" placeholder="Password">
+        <button onclick="register()" id="register-btn">Register</button>
+        <div id="register-error" class="error-msg"></div>
+    </div>
+</div>
+
+<div id="adminPanel" style="display:none;">
+    <div class="admin-section">
+        <h2 id="add-product-title">Add Product</h2>
+        <div class="admin-form">
+            <input type="text" id="product-name" placeholder="Product Name">
+            <textarea id="product-desc" placeholder="Description" rows="2"></textarea>
+            <input type="text" id="product-price" placeholder="Price UAH">
+            <input type="text" id="product-duration" placeholder="Duration days">
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+        
+        <h3 id="manage-products-title">Manage Products</h3>
+        <div id="admin-products-list"></div>
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeEditModal()">&times;</span>
+        <h2 id="edit-title">Edit Product</h2>
+        <input type="hidden" id="edit-id">
+        <input type="text" id="edit-name" placeholder="Name" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
+        <textarea id="edit-description" placeholder="Description" rows="3" style="width:100%; padding:0.5rem; margin:0.5rem 0;"></textarea>
+        <input type="text" id="edit-price" placeholder="Price" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
+        <input type="text" id="edit-duration" placeholder="Duration" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
+        <button onclick="saveEdit()" style="background:#10b981; width:100%; padding:0.7rem; border:none; border-radius:1rem; color:white;">Save</button>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getDatabase, ref, get, set, push, remove, update } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyChEAG2fgPYAhEVzmvBESET8dJ8n239vVo",
+        authDomain: "a-and-i-site.firebaseapp.com",
+        projectId: "a-and-i-site",
+        storageBucket: "a-and-i-site.firebasestorage.app",
+        messagingSenderId: "469953570090",
+        appId: "1:469953570090:web:1713a01167cd6e46f26a53",
+        measurementId: "G-7H4F0LXE9N"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+
+    window.currentUser = null;
+    window.currentLang = localStorage.getItem('lang') || 'en';
+    window.products = [];
+
+    const translations = {
+        en: {
+            hero: 'Turning ideas into digital reality',
+            about_title: 'About Us',
+            about_text1: 'We are a team of professionals creating websites, applications and design since 2019. Client focus, innovation and aesthetics are our main principles.',
+            price: 'Price:',
+            duration: 'Duration:',
+            login: 'Login',
+            register: 'Register',
+            logout: 'Logout',
+            admin_panel: 'Admin Panel',
+            add_product: 'Add Product',
+            manage_products: 'Manage Products',
+            edit: 'Edit Product',
+            footer: '2025 A and I Studio',
+            details: 'Details'
+        },
+        ua: {
+            hero: 'Втілюємо ідеї в цифрову реальність',
+            about_title: 'Про нас',
+            about_text1: 'Ми команда професіоналів, яка створює сайти, застосунки та дизайн з 2019 року. Клієнтоорієнтованість, інновації та естетика - наші головні принципи.',
+            price: 'Ціна:',
+            duration: 'Термін:',
+            login: 'Вхід',
+            register: 'Реєстрація',
+            logout: 'Вихід',
+            admin_panel: 'Панель адміна',
+            add_product: 'Додати товар',
+            manage_products: 'Управління товарами',
+            edit: 'Редагувати товар',
+            footer: '2025 A and I Studio',
+            details: 'Детальніше'
+        }
+    };
+
+    function updateLanguage() {
+        const t = translations[window.currentLang];
+        document.getElementById('hero-text').innerText = t.hero;
+        document.getElementById('about-title').innerText = t.about_title;
+        document.getElementById('about-text-1').innerText = t.about_text1;
+        document.getElementById('price-label').innerHTML = t.price;
+        document.getElementById('duration-label').innerHTML = t.duration;
+        document.getElementById('login-title').innerText = t.login;
+        document.getElementById('register-title').innerText = t.register;
+        document.getElementById('login-btn').innerText = t.login;
+        document.getElementById('register-btn').innerText = t.register;
+        document.getElementById('add-product-title').innerText = t.add_product;
+        document.getElementById('manage-products-title').innerText = t.manage_products;
+        document.getElementById('edit-title').innerText = t.edit;
+        document.querySelector('.footer p').innerHTML = t.footer;
+        
+        const navAbout = document.getElementById('about-nav');
+        const navLogin = document.getElementById('login-nav');
+        const navRegister = document.getElementById('register-nav');
+        const navLogout = document.getElementById('logout-nav');
+        const navAdmin = document.getElementById('admin-nav');
+        
+        if (navAbout) navAbout.innerText = t.about_title;
+        if (navLogin) navLogin.innerText = t.login;
+        if (navRegister) navRegister.innerText = t.register;
+        if (navLogout) navLogout.innerText = t.logout;
+        if (navAdmin) navAdmin.innerText = t.admin_panel;
+    }
+
+    window.setLanguage = function(lang) {
+        window.currentLang = lang;
+        localStorage.setItem('lang', lang);
+        updateLanguage();
+        renderProducts();
+    };
+
+    async function loadProducts() {
+        const productsRef = ref(database, 'products');
+        const snapshot = await get(productsRef);
+        if (snapshot.exists()) {
+            window.products = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
+        } else {
+            const demoProducts = [
+                { name: 'Website Creation', description: 'Modern responsive websites with React and Node.js, fully optimized and SEO friendly.', price: '5000', duration: '14 days' },
+                { name: 'App Creation', description: 'Mobile apps for iOS and Android using Flutter and React Native, with backend integration.', price: '8000', duration: '21 days' },
+                { name: 'Styling Service', description: 'Unique UI and UX design, branding, and complete style guide for your business.', price: '3000', duration: '7 days' }
+            ];
+            for (const prod of demoProducts) {
+                await push(ref(database, 'products'), prod);
+            }
+            const newSnapshot = await get(productsRef);
+            window.products = Object.entries(newSnapshot.val()).map(([id, data]) => ({ id, ...data }));
+        }
+        renderProducts();
+        if (window.currentUser && window.currentUser.email === 'admin@aandistudio.com') {
+            renderAdminList();
+        }
+    }
+
+    function renderProducts() {
+        const container = document.getElementById('products-container');
+        if (!container) return;
+        
+        if (window.products.length === 0) {
+            container.innerHTML = '<p style="text-align:center; width:100%;">No products yet.</p>';
+            return;
+        }
+        
+        const t = translations[window.currentLang];
+        container.innerHTML = window.products.map(product => `
+            <div class="card" onclick="showProductDetails('${product.id}')">
+                <h3>${escapeHtml(product.name)}</h3>
+                <div class="price">${escapeHtml(product.price)} UAH</div>
+                <div class="duration">${escapeHtml(product.duration)}</div>
+                <p>${escapeHtml(product.description.substring(0, 60))}...</p>
+                <button class="lang-btn details-btn" onclick="event.stopPropagation(); showProductDetails('${product.id}')">${t.details} →</button>
+            </div>
+        `).join('');
+    }
+
+    window.showProductDetails = function(productId) {
+        const product = window.products.find(p => p.id === productId);
+        if (!product) return;
+        const t = translations[window.currentLang];
+        document.getElementById('modal-title').innerText = product.name;
+        document.getElementById('modal-description').innerText = product.description;
+        document.getElementById('modal-price').innerText = product.price;
+        document.getElementById('modal-duration').innerText = product.duration;
+        document.getElementById('productModal').style.display = 'flex';
+    };
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    window.addProduct = async function() {
+        const name = document.getElementById('product-name').value;
+        const description = document.getElementById('product-desc').value;
+        const price = document.getElementById('product-price').value;
+        const duration = document.getElementById('product-duration').value;
+        
+        if (!name || !description || !price || !duration) {
+            alert('Please fill all fields');
+            return;
+        }
+        
+        const newProduct = { name, description, price, duration, created_at: new Date().toISOString() };
+        await push(ref(database, 'products'), newProduct);
+        
+        document.getElementById('product-name').value = '';
+        document.getElementById('product-desc').value = '';
+        document.getElementById('product-price').value = '';
+        document.getElementById('product-duration').value = '';
+        
+        await loadProducts();
+    };
+
+    window.deleteProduct = async function(id) {
+        if (confirm('Delete this product?')) {
+            await remove(ref(database, `products/${id}`));
+            await loadProducts();
+        }
+    };
+
+    window.editProduct = function(id, name, description, price, duration) {
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-name').value = name;
+        document.getElementById('edit-description').value = description;
+        document.getElementById('edit-price').value = price;
+        document.getElementById('edit-duration').value = duration;
+        document.getElementById('editModal').style.display = 'flex';
+    };
+
+    window.saveEdit = async function() {
+        const id = document.getElementById('edit-id').value;
+        const name = document.getElementById('edit-name').value;
+        const description = document.getElementById('edit-description').value;
+        const price = document.getElementById('edit-price').value;
+        const duration = document.getElementById('edit-duration').value;
+        
+        await update(ref(database, `products/${id}`), { name, description, price, duration });
+        closeEditModal();
+        await loadProducts();
+    };
+
+    function renderAdminList() {
+        const container = document.getElementById('admin-products-list');
+        if (!container) return;
+        
+        container.innerHTML = window.products.map(product => `
+            <div class="admin-item">
+                <span><strong>${escapeHtml(product.name)}</strong> - ${escapeHtml(product.price)} UAH</span>
+                <div>
+                    <button onclick="deleteProduct('${product.id}')">Delete</button>
+                    <button class="edit-btn" onclick="editProduct('${product.id}', '${escapeHtml(product.name)}', '${escapeHtml(product.description)}', '${escapeHtml(product.price)}', '${escapeHtml(product.duration)}')">Edit</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    window.showLoginModal = function() {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('login-error').innerText = '';
+    };
+    window.closeLoginModal = function() { document.getElementById('loginModal').style.display = 'none'; };
+    window.showRegisterModal = function() {
+        document.getElementById('registerModal').style.display = 'flex';
+        document.getElementById('register-error').innerText = '';
+    };
+    window.closeRegisterModal = function() { document.getElementById('registerModal').style.display = 'none'; };
+    window.closeProductModal = function() { document.getElementById('productModal').style.display = 'none'; };
+    window.closeEditModal = function() { document.getElementById('editModal').style.display = 'none'; };
+    window.scrollToAbout = function() { document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' }); };
+    window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
+    window.login = async function() {
+        const email = document.getElementById('login-username').value + '@aandistudio.com';
+        const password = document.getElementById('login-password').value;
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            closeLoginModal();
+        } catch (error) {
+            document.getElementById('login-error').innerText = 'Invalid credentials';
+        }
+    };
+
+    window.register = async function() {
+        const username = document.getElementById('register-username').value;
+        const password = document.getElementById('register-password').value;
+        const email = username + '@aandistudio.com';
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            closeRegisterModal();
+        } catch (error) {
+            document.getElementById('register-error').innerText = error.message;
+        }
+    };
+
+    window.logout = async function() {
+        await signOut(auth);
+    };
+
+    window.toggleAdminPanel = function() {
+        const panel = document.getElementById('adminPanel');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        if (panel.style.display === 'block') {
+            renderAdminList();
+        }
+    };
+
+    onAuthStateChanged(auth, async (user) => {
+        window.currentUser = user;
+        const authButtons = document.getElementById('auth-buttons');
+        const userInfo = document.getElementById('user-info');
+        const welcomeSpan = document.getElementById('welcome-user');
+        const adminNav = document.getElementById('admin-nav');
+        
+        if (user) {
+            authButtons.style.display = 'none';
+            userInfo.style.display = 'inline-flex';
+            welcomeSpan.innerText = user.email.split('@')[0];
+            if (user.email === 'admin@aandistudio.com') {
+                adminNav.style.display = 'inline-block';
+            } else {
+                adminNav.style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        } else {
+            authButtons.style.display = 'inline-flex';
+            userInfo.style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+    });
+
+    window.onclick = function(e) {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+        }
+    };
+
+    updateLanguage();
+    loadProducts();
+</script>
+</body>
+</html>
