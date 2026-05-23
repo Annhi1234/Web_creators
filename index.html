@@ -9,12 +9,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', 'Courier New', monospace;
         }
 
         body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #f1f5f9;
+            background: #0a0a0f;
+            background-image: radial-gradient(circle at 25% 40%, rgba(30, 20, 40, 0.6) 0%, #050508 100%);
+            color: #e0d4f0;
             min-height: 100vh;
         }
 
@@ -22,14 +23,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 3rem;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            padding: 1.2rem 3rem;
+            background: rgba(8, 6, 15, 0.85);
+            backdrop-filter: blur(12px);
             flex-wrap: wrap;
             gap: 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #2a1e3c;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .lang-switch {
@@ -38,62 +41,72 @@
         }
 
         .lang-btn {
-            background: #3b82f6;
+            background: #1e102f;
             padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            color: white;
+            border-radius: 0.5rem;
+            color: #cbb8f0;
             text-decoration: none;
             font-weight: bold;
             transition: 0.2s;
-            border: none;
+            border: 1px solid #4a2c6e;
             cursor: pointer;
             font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .lang-btn:hover {
-            background: #2563eb;
-            transform: scale(1.05);
+            background: #2e1a4a;
+            color: #f0e6ff;
+            border-color: #7a4faa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         .nav {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.8rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .nav a, .nav button {
-            color: #cbd5e1;
+            color: #bcacdc;
             text-decoration: none;
             background: none;
             border: none;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
+            font-weight: 500;
+            padding: 0.4rem 0;
         }
 
         .nav a:hover, .nav button:hover {
-            color: #60a5fa;
+            color: #d9c8ff;
+            text-shadow: 0 0 6px #7a4faa;
         }
 
         .hero {
             text-align: center;
-            padding: 4rem 2rem 3rem;
+            padding: 5rem 2rem 4rem;
         }
 
         h1 {
             font-size: 4rem;
-            background: linear-gradient(135deg, #a5f3fc, #818cf8);
+            background: linear-gradient(135deg, #b8a2e8, #6c3f9e);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
+            text-shadow: 0 0 20px rgba(100, 50, 150, 0.3);
         }
 
         .hero-subtitle {
-            margin-top: 1rem;
+            margin-top: 1.2rem;
             font-size: 1.2rem;
-            color: #94a3b8;
+            color: #8f7aaf;
+            letter-spacing: 0.5px;
         }
 
         .cards {
@@ -107,48 +120,55 @@
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(16, 12, 26, 0.85);
             backdrop-filter: blur(8px);
-            border-radius: 2rem;
+            border-radius: 1rem;
             padding: 2rem;
             width: 320px;
             text-align: center;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #2e1e48;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.5);
-            border-color: #3b82f6;
+            transform: translateY(-6px);
+            border-color: #6a3db0;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 12px rgba(100, 50, 160, 0.2);
+            background: rgba(22, 16, 36, 0.92);
         }
 
         .card h3 {
             font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #93c5fd;
+            margin-bottom: 0.75rem;
+            color: #c6aeff;
+            font-weight: 600;
         }
 
         .card .price {
             font-size: 1.5rem;
-            color: #fbbf24;
+            color: #d9b48b;
             margin: 0.5rem 0;
+            font-weight: bold;
         }
 
         .card .duration {
-            color: #94a3b8;
+            color: #8a77a5;
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
         .card p {
-            color: #cbd5e6;
+            color: #b8aad0;
             line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         .card .details-btn {
-            margin-top: 1rem;
-            background: #4f46e5;
+            margin-top: 1.2rem;
+            background: #281a40;
+            border: 1px solid #5d3b8c;
         }
 
         .modal {
@@ -158,108 +178,116 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background: #1e293b;
+            background: #110c1c;
             padding: 2rem;
-            border-radius: 2rem;
+            border-radius: 1.2rem;
             max-width: 500px;
             width: 90%;
             position: relative;
-            border: 1px solid #334155;
+            border: 1px solid #4a2f72;
+            box-shadow: 0 0 32px rgba(60, 30, 100, 0.4);
         }
 
         .close-modal {
             position: absolute;
             top: 1rem;
             right: 1.5rem;
-            font-size: 2rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            color: #94a3b8;
+            color: #9a80bb;
         }
 
         .close-modal:hover {
-            color: #ef4444;
+            color: #d47fff;
         }
 
         .auth-container {
-            background: #1e293b;
-            border-radius: 2rem;
+            background: #0f0a1a;
+            border-radius: 1.2rem;
             padding: 2rem;
             max-width: 400px;
             width: 90%;
             margin: 0 auto;
+            border: 1px solid #382a50;
         }
 
         .auth-container input {
             width: 100%;
             padding: 0.8rem;
-            margin: 0.5rem 0;
-            border-radius: 1rem;
-            border: none;
-            background: #0f172a;
-            color: white;
+            margin: 0.6rem 0;
+            border-radius: 0.5rem;
+            border: 1px solid #3a2a50;
+            background: #05030a;
+            color: #e2d4fc;
             font-size: 1rem;
         }
 
         .auth-container input:focus {
-            outline: 2px solid #3b82f6;
+            outline: none;
+            border-color: #8862d4;
+            box-shadow: 0 0 8px #5a3a9e;
         }
 
         .auth-container button {
-            background: #3b82f6;
-            color: white;
+            background: #241939;
+            color: #dfceff;
             padding: 0.8rem;
-            border: none;
-            border-radius: 2rem;
+            border: 1px solid #61478a;
+            border-radius: 0.6rem;
             width: 100%;
             cursor: pointer;
             font-size: 1rem;
             margin-top: 0.5rem;
+            font-weight: bold;
+            transition: 0.2s;
         }
 
         .auth-container button:hover {
-            background: #2563eb;
+            background: #362456;
+            border-color: #916be8;
+            color: white;
         }
 
         .error-msg {
-            color: #ef4444;
+            color: #e06c75;
             margin-top: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .about-section {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(8, 5, 18, 0.8);
             padding: 3rem 2rem;
             margin-top: 3rem;
             text-align: center;
-            border-top: 1px solid #334155;
+            border-top: 1px solid #2e2144;
         }
 
         .about-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #a5f3fc;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            color: #bba9ea;
         }
 
         .about-section p {
             max-width: 800px;
             margin: 0 auto 1rem;
             line-height: 1.6;
-            color: #cbd5e1;
+            color: #bbaed0;
         }
 
         .admin-section {
-            background: #0f172a;
+            background: #0a0715;
             margin: 2rem;
             padding: 2rem;
-            border-radius: 2rem;
-            border: 1px solid #334155;
+            border-radius: 1.2rem;
+            border: 1px solid #352956;
         }
 
         .admin-form {
@@ -271,61 +299,68 @@
 
         .admin-form input, .admin-form textarea {
             padding: 0.7rem;
-            border-radius: 1rem;
-            border: none;
-            background: #1e293b;
-            color: white;
+            border-radius: 0.5rem;
+            border: 1px solid #3f2c5e;
+            background: #06030e;
+            color: #eeddff;
             flex: 1;
             min-width: 150px;
         }
 
         .admin-form button {
-            background: #10b981;
+            background: #2a1b44;
+            border: 1px solid #5f3f94;
             padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 2rem;
+            border-radius: 0.6rem;
             cursor: pointer;
-            color: white;
+            color: #e2ceff;
             font-weight: bold;
         }
 
+        .admin-form button:hover {
+            background: #3e2870;
+        }
+
         .admin-item {
-            background: #1e293b;
+            background: #100b1c;
             padding: 1rem;
-            margin: 0.5rem 0;
-            border-radius: 1rem;
+            margin: 0.6rem 0;
+            border-radius: 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            border: 1px solid #302050;
         }
 
         .admin-item button {
-            background: #ef4444;
-            border: none;
+            background: #311f4f;
+            border: 1px solid #6d4bae;
             padding: 0.4rem 1rem;
-            border-radius: 1rem;
+            border-radius: 0.5rem;
             cursor: pointer;
-            color: white;
+            color: #efd9ff;
             margin-left: 0.5rem;
         }
 
         .admin-item .edit-btn {
-            background: #3b82f6;
+            background: #2c3e66;
+            border-color: #5c7ebd;
         }
 
         .footer {
             text-align: center;
             padding: 2rem;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
+            border-top: 1px solid #281f3a;
+            color: #7a6a96;
+            font-size: 0.85rem;
         }
 
         .loading {
             text-align: center;
             padding: 2rem;
-            color: #94a3b8;
+            color: #8e78b0;
         }
 
         @media (max-width: 700px) {
@@ -343,6 +378,7 @@
 
         button {
             cursor: pointer;
+            transition: all 0.2s;
         }
     </style>
 </head>
@@ -445,7 +481,7 @@
         <textarea id="edit-description" placeholder="Description" rows="3" style="width:100%; padding:0.5rem; margin:0.5rem 0;"></textarea>
         <input type="text" id="edit-price" placeholder="Price" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
         <input type="text" id="edit-duration" placeholder="Duration" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
-        <button onclick="saveEdit()" style="background:#10b981; width:100%; padding:0.7rem; border:none; border-radius:1rem; color:white;">Save</button>
+        <button onclick="saveEdit()" style="background:#2a1b44; border:1px solid #6f4bc2; width:100%; padding:0.7rem; border-radius:0.6rem; color:white;">Save</button>
     </div>
 </div>
 
@@ -486,7 +522,6 @@
             add_product: 'Add Product',
             manage_products: 'Manage Products',
             edit: 'Edit Product',
-            footer: '2025 A and I Studio',
             details: 'Details'
         },
         ua: {
@@ -502,7 +537,6 @@
             add_product: 'Додати товар',
             manage_products: 'Управління товарами',
             edit: 'Редагувати товар',
-            footer: '2025 A and I Studio',
             details: 'Детальніше'
         }
     };
@@ -521,7 +555,6 @@
         document.getElementById('add-product-title').innerText = t.add_product;
         document.getElementById('manage-products-title').innerText = t.manage_products;
         document.getElementById('edit-title').innerText = t.edit;
-        document.querySelector('.footer p').innerHTML = t.footer;
         
         const navAbout = document.getElementById('about-nav');
         const navLogin = document.getElementById('login-nav');
@@ -550,9 +583,9 @@
             window.products = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
         } else {
             const demoProducts = [
-                { name: 'Website Creation', description: 'Modern responsive websites with React and Node.js, fully optimized and SEO friendly.', price: '5000', duration: '14 days' },
-                { name: 'App Creation', description: 'Mobile apps for iOS and Android using Flutter and React Native, with backend integration.', price: '8000', duration: '21 days' },
-                { name: 'Styling Service', description: 'Unique UI and UX design, branding, and complete style guide for your business.', price: '3000', duration: '7 days' }
+                { name: 'Створення сайту', description: 'Повний цикл створення сучасного адаптивного сайту. React, Node.js, оптимізація, SEO, адмін-панель.', price: '5000', duration: '14 days' },
+                { name: 'Створення програми', description: 'Розробка мобільних та десктопних застосунків під iOS, Android, Windows. Flutter, React Native, Java.', price: '8000', duration: '21 days' },
+                { name: 'Створення збірки майнкрафт', description: 'Унікальна модпак збірка для Minecraft з кастомними модами, налаштуваннями та оптимізацією.', price: '3500', duration: '10 days' }
             ];
             for (const prod of demoProducts) {
                 await push(ref(database, 'products'), prod);
@@ -571,7 +604,7 @@
         if (!container) return;
         
         if (window.products.length === 0) {
-            container.innerHTML = '<p style="text-align:center; width:100%;">No products yet.</p>';
+            container.innerHTML = '<p style="text-align:center; width:100%; color:#9b87b5;">No products yet.</p>';
             return;
         }
         
@@ -581,7 +614,7 @@
                 <h3>${escapeHtml(product.name)}</h3>
                 <div class="price">${escapeHtml(product.price)} UAH</div>
                 <div class="duration">${escapeHtml(product.duration)}</div>
-                <p>${escapeHtml(product.description.substring(0, 60))}...</p>
+                <p>${escapeHtml(product.description.substring(0, 70))}...</p>
                 <button class="lang-btn details-btn" onclick="event.stopPropagation(); showProductDetails('${product.id}')">${t.details} →</button>
             </div>
         `).join('');
