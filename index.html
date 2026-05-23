@@ -73,7 +73,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 32px;
             margin: 40px 0 60px;
         }
@@ -94,11 +94,33 @@
             box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
         }
 
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            background: #1a1a24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #7c7c8e;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         .card-icon {
-            font-size: 38px;
-            font-weight: 500;
+            font-size: 48px;
+            font-weight: 400;
             margin-bottom: 20px;
             color: #cbd5e1;
+            text-align: center;
         }
 
         .card h3 {
@@ -243,11 +265,33 @@
             border-color: #6a6a80;
         }
 
+        .about-section {
+            background: #0f0f14;
+            border-radius: 32px;
+            padding: 48px 40px;
+            margin: 40px 0 60px;
+            border: 1px solid #2a2a35;
+        }
+
+        .about-section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        .about-section p {
+            color: #b0b0ba;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
         .footer {
             text-align: center;
-            padding: 48px 0 32px;
+            padding: 32px 0 40px;
             border-top: 1px solid #2a2a35;
-            margin-top: 60px;
+            margin-top: 20px;
             color: #6b6b78;
             font-size: 14px;
         }
@@ -262,6 +306,9 @@
             }
             .card {
                 padding: 24px 20px;
+            }
+            .about-section {
+                padding: 32px 24px;
             }
         }
     </style>
@@ -278,9 +325,16 @@
     </div>
 
     <div id="services-grid" class="grid"></div>
+
+    <div class="about-section" id="about-section">
+        <h2 id="about-title">About</h2>
+        <p id="about-text">Independent full‑stack developer. I build websites, cross‑platform applications, minecraft plugins and modpacks. Clean code, modern tools, reliable delivery.</p>
+    </div>
 </div>
 
-<div class="footer"></div>
+<div class="footer" id="footer">
+    <p>full‑stack freelance · 2025</p>
+</div>
 
 <div id="service-modal" class="modal">
     <div class="modal-content">
@@ -312,28 +366,32 @@
                 shortDesc: "Full‑stack websites, landing pages, admin panels.",
                 fullDesc: "I build fast, responsive websites with React, Vue or vanilla JS. Backend with Node.js, PHP or Python. SEO, mobile-first, animations, API integrations, databases. From simple business cards to complex web apps.",
                 price: "from $500",
-                duration: "delivery: 7-14 days"
+                duration: "delivery: 7-14 days",
+                image: null
             },
             {
                 name: "Applications",
                 shortDesc: "Desktop & mobile apps, cross‑platform solutions.",
                 fullDesc: "Cross-platform apps using Flutter, React Native or Electron. Performance, clean UI, offline sync, notifications, payment integration. I ship applications for Windows, macOS, iOS and Android.",
                 price: "from $800",
-                duration: "delivery: 14-21 days"
+                duration: "delivery: 14-21 days",
+                image: null
             },
             {
                 name: "Minecraft plugins",
                 shortDesc: "Custom plugins for Spigot, Paper, Bukkit.",
                 fullDesc: "Custom mechanics, minigames, economy, quests, custom mobs, advanced gui, anti-cheat modules, or anything you need for your server. I write optimized Java code and provide full support.",
                 price: "from $200",
-                duration: "delivery: 3-10 days"
+                duration: "delivery: 3-10 days",
+                image: null
             },
             {
                 name: "Minecraft modpacks",
                 shortDesc: "Optimized modpack builds, custom configs.",
                 fullDesc: "I create stable, well-optimized modpacks for Forge/Fabric. Questlines, progression, balancing, server-ready packs, performance tweaks. I also help with custom mod integration and bug fixing.",
                 price: "from $250",
-                duration: "delivery: 5-14 days"
+                duration: "delivery: 5-14 days",
+                image: null
             }
         ],
         ua: [
@@ -342,28 +400,32 @@
                 shortDesc: "Повноцінні сайти, лендінги, адмін-панелі.",
                 fullDesc: "Створюю швидкі сучасні сайти на React, Vue або чистому JS. Бекенд: Node.js, PHP, Python. SEO, адаптивність, анімації, інтеграція API, бази даних — від візитівки до великих вебзастосунків.",
                 price: "від 500$",
-                duration: "термін: 7-14 днів"
+                duration: "термін: 7-14 днів",
+                image: null
             },
             {
                 name: "Програми",
                 shortDesc: "Десктопні та мобільні застосунки.",
                 fullDesc: "Кроссплатформені застосунки Flutter, React Native або Electron. Продуктивність, чистий UI, офлайн, пуші, платіжні системи. Розробляю під Windows, macOS, iOS та Android.",
                 price: "від 800$",
-                duration: "термін: 14-21 днів"
+                duration: "термін: 14-21 днів",
+                image: null
             },
             {
                 name: "Плагіни Minecraft",
                 shortDesc: "Плагіни для Spigot, Paper, Bukkit.",
                 fullDesc: "Кастомна механіка, мініігри, економіка, квести, кастомні моби, GUI, античит або будь-яка ідея для твого сервера. Java-код, підтримка, оптимізація.",
                 price: "від 200$",
-                duration: "термін: 3-10 днів"
+                duration: "термін: 3-10 днів",
+                image: null
             },
             {
                 name: "Збірки Minecraft",
                 shortDesc: "Готові модпаки, налаштування, оптимізація.",
                 fullDesc: "Роблю стабільні, оптимізовані збірки Forge/Fabric. Квести, прогресія, баланс, готові до сервера. Допомога з кастомними модами та виправлення багів.",
                 price: "від 250$",
-                duration: "термін: 5-14 днів"
+                duration: "термін: 5-14 днів",
+                image: null
             }
         ]
     };
@@ -381,6 +443,19 @@
             }
         });
         renderServices();
+        renderAbout();
+    }
+
+    function renderAbout() {
+        const aboutTitle = document.getElementById('about-title');
+        const aboutText = document.getElementById('about-text');
+        if (currentLang === 'en') {
+            aboutTitle.innerText = 'About';
+            aboutText.innerText = 'Independent full‑stack developer. I build websites, cross‑platform applications, minecraft plugins and modpacks. Clean code, modern tools, reliable delivery.';
+        } else {
+            aboutTitle.innerText = 'Про мене';
+            aboutText.innerText = 'Незалежний full‑stack розробник. Створюю сайти, кроссплатформені застосунки, плагіни та збірки для майнкрафт. Чистий код, сучасні інструменти, своєчасна передача.';
+        }
     }
 
     function renderServices() {
@@ -393,8 +468,16 @@
             const card = document.createElement('div');
             card.className = 'card';
             card.setAttribute('data-idx', idx);
+            
+            let imageHtml = '';
+            if (product.image && product.image.trim() !== '') {
+                imageHtml = `<div class="card-img"><img src="${escapeHtml(product.image)}" alt="product"></div>`;
+            } else {
+                imageHtml = `<div class="card-icon">◧</div>`;
+            }
+            
             card.innerHTML = `
-                <div class="card-icon">◧</div>
+                ${imageHtml}
                 <h3>${escapeHtml(product.name)}</h3>
                 <p>${escapeHtml(product.shortDesc)}</p>
                 <div class="price">${escapeHtml(product.price)}</div>
