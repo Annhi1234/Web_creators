@@ -327,12 +327,12 @@
     <div id="services-grid" class="grid"></div>
 
     <div class="about-section" id="about-section">
-        <h2 id="about-title">About us </h2>
-        <p id="about-text">Independent full‑stack developer. I build websites, cross‑platform applications, minecraft plugins and modpacks. Clean code, modern tools, reliable delivery.</p>
+        <h2 id="about-title">About us</h2>
+        <p id="about-text">We are a team of young guys who know how to do a lot of things, so we offer you a lot of fun for your money.</p>
     </div>
 </div>
 
-<div class="footer" id="footer">
+<div class="footer">
     <p>· 2025 A and I studio</p>
 </div>
 
@@ -350,7 +350,7 @@
 <div id="contact-modal" class="modal">
     <div class="modal-content contact-modal">
         <span class="close-modal" id="close-contact-modal-btn">&times;</span>
-        <h2>Get in touch</h2>
+        <h2 id="contact-modal-title">Get in touch</h2>
         <div class="contact-options">
             <a href="https://t.me/yourusername" target="_blank" class="contact-link">Telegram</a>
             <a href="https://discord.gg/yourinvite" target="_blank" class="contact-link">Discord</a>
@@ -444,6 +444,7 @@
         });
         renderServices();
         renderAbout();
+        renderContactModalText();
     }
 
     function renderAbout() {
@@ -455,6 +456,18 @@
         } else {
             aboutTitle.innerText = 'Про нас';
             aboutText.innerText = 'Ми команда молодих хлопців котрі вміють багато чого, тому любий капріз за ваші гроші.';
+        }
+    }
+
+    function renderContactModalText() {
+        const contactTitle = document.getElementById('contact-modal-title');
+        const contactBtn = document.getElementById('open-contact-modal-btn');
+        if (currentLang === 'en') {
+            contactTitle.innerText = 'Get in touch';
+            contactBtn.innerText = 'Contact us';
+        } else {
+            contactTitle.innerText = "Зв'язатися";
+            contactBtn.innerText = "Зв'язатися";
         }
     }
 
