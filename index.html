@@ -3,172 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A and I Studio</title>
+    <title>freelance dev | sites · apps · minecraft</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Courier New', monospace;
         }
 
         body {
-            background: #0a0a0f;
-            background-image: radial-gradient(circle at 25% 40%, rgba(30, 20, 40, 0.6) 0%, #050508 100%);
-            color: #e0d4f0;
-            min-height: 100vh;
+            background: #f8fafc;
+            font-family: system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            color: #0f172a;
+            line-height: 1.5;
         }
 
-        .top-bar {
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 3rem;
-            background: rgba(8, 6, 15, 0.85);
-            backdrop-filter: blur(12px);
             flex-wrap: wrap;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #2a1e3c;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            gap: 20px;
+            padding: 28px 0 24px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 56px;
         }
 
-        .lang-switch {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .lang-btn {
-            background: #1e102f;
-            padding: 0.5rem 1.2rem;
-            border-radius: 0.5rem;
-            color: #cbb8f0;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.2s;
-            border: 1px solid #4a2c6e;
-            cursor: pointer;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .lang-btn:hover {
-            background: #2e1a4a;
-            color: #f0e6ff;
-            border-color: #7a4faa;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav {
-            display: flex;
-            gap: 1.8rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav a, .nav button {
-            color: #bcacdc;
-            text-decoration: none;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: 500;
-            padding: 0.4rem 0;
-        }
-
-        .nav a:hover, .nav button:hover {
-            color: #d9c8ff;
-            text-shadow: 0 0 6px #7a4faa;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 5rem 2rem 4rem;
-        }
-
-        h1 {
-            font-size: 4rem;
-            background: linear-gradient(135deg, #b8a2e8, #6c3f9e);
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #0f172a, #2c4c6e);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.01em;
-            text-shadow: 0 0 20px rgba(100, 50, 150, 0.3);
         }
 
-        .hero-subtitle {
-            margin-top: 1.2rem;
-            font-size: 1.2rem;
-            color: #8f7aaf;
-            letter-spacing: 0.5px;
-        }
-
-        .cards {
+        .lang-group {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: auto;
+            gap: 10px;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 60px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #475569;
+            transition: 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0 60px;
         }
 
         .card {
-            background: rgba(16, 12, 26, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 1rem;
-            padding: 2rem;
-            width: 320px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #2e1e48;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 28px 24px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            border-color: #6a3db0;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 12px rgba(100, 50, 160, 0.2);
-            background: rgba(22, 16, 36, 0.92);
+            transform: translateY(-4px);
+            border-color: #cbd5e1;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 38px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #1e293b;
         }
 
         .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.75rem;
-            color: #c6aeff;
+            font-size: 24px;
             font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
         }
 
         .card .price {
-            font-size: 1.5rem;
-            color: #d9b48b;
-            margin: 0.5rem 0;
-            font-weight: bold;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 16px 0 8px;
         }
 
         .card .duration {
-            color: #8a77a5;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            color: #5b6e8c;
+            font-size: 14px;
+            margin-bottom: 16px;
         }
 
         .card p {
-            color: #b8aad0;
+            color: #334155;
+            font-size: 15px;
             line-height: 1.5;
-            font-size: 0.95rem;
         }
 
-        .card .details-btn {
-            margin-top: 1.2rem;
-            background: #281a40;
-            border: 1px solid #5d3b8c;
+        .badge {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1e40af;
+            margin-top: 16px;
         }
 
         .modal {
@@ -178,458 +145,302 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background: #110c1c;
-            padding: 2rem;
-            border-radius: 1.2rem;
-            max-width: 500px;
+            background: #ffffff;
+            max-width: 560px;
             width: 90%;
+            border-radius: 32px;
+            padding: 32px 28px;
             position: relative;
-            border: 1px solid #4a2f72;
-            box-shadow: 0 0 32px rgba(60, 30, 100, 0.4);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+            border: 1px solid #eef2f6;
         }
 
         .close-modal {
             position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 1.8rem;
+            top: 20px;
+            right: 28px;
+            font-size: 28px;
+            font-weight: 300;
             cursor: pointer;
-            color: #9a80bb;
-        }
-
-        .close-modal:hover {
-            color: #d47fff;
-        }
-
-        .auth-container {
-            background: #0f0a1a;
-            border-radius: 1.2rem;
-            padding: 2rem;
-            max-width: 400px;
-            width: 90%;
-            margin: 0 auto;
-            border: 1px solid #382a50;
-        }
-
-        .auth-container input {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.6rem 0;
-            border-radius: 0.5rem;
-            border: 1px solid #3a2a50;
-            background: #05030a;
-            color: #e2d4fc;
-            font-size: 1rem;
-        }
-
-        .auth-container input:focus {
-            outline: none;
-            border-color: #8862d4;
-            box-shadow: 0 0 8px #5a3a9e;
-        }
-
-        .auth-container button {
-            background: #241939;
-            color: #dfceff;
-            padding: 0.8rem;
-            border: 1px solid #61478a;
-            border-radius: 0.6rem;
-            width: 100%;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            font-weight: bold;
+            color: #94a3b8;
             transition: 0.2s;
         }
 
-        .auth-container button:hover {
-            background: #362456;
-            border-color: #916be8;
-            color: white;
+        .close-modal:hover {
+            color: #1e293b;
         }
 
-        .error-msg {
-            color: #e06c75;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
+        .modal h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
         }
 
-        .about-section {
-            background: rgba(8, 5, 18, 0.8);
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-            text-align: center;
-            border-top: 1px solid #2e2144;
-        }
-
-        .about-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.2rem;
-            color: #bba9ea;
-        }
-
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto 1rem;
+        .modal-description {
+            color: #334155;
+            margin: 20px 0 24px;
             line-height: 1.6;
-            color: #bbaed0;
         }
 
-        .admin-section {
-            background: #0a0715;
-            margin: 2rem;
-            padding: 2rem;
-            border-radius: 1.2rem;
-            border: 1px solid #352956;
-        }
-
-        .admin-form {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .admin-form input, .admin-form textarea {
-            padding: 0.7rem;
-            border-radius: 0.5rem;
-            border: 1px solid #3f2c5e;
-            background: #06030e;
-            color: #eeddff;
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .admin-form button {
-            background: #2a1b44;
-            border: 1px solid #5f3f94;
-            padding: 0.7rem 1.5rem;
-            border-radius: 0.6rem;
+        .contact-btn {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
-            color: #e2ceff;
-            font-weight: bold;
+            width: 100%;
+            transition: 0.2s;
+            margin-top: 12px;
         }
 
-        .admin-form button:hover {
-            background: #3e2870;
+        .contact-btn:hover {
+            background: #1e293b;
+            transform: scale(0.98);
         }
 
-        .admin-item {
-            background: #100b1c;
-            padding: 1rem;
-            margin: 0.6rem 0;
-            border-radius: 0.8rem;
+        .contact-modal {
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .contact-options {
             display: flex;
-            justify-content: space-between;
+            gap: 24px;
+            justify-content: center;
+            margin: 28px 0 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            border: 1px solid #302050;
+            gap: 10px;
+            background: #f1f5f9;
+            padding: 12px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid #e2e8f0;
         }
 
-        .admin-item button {
-            background: #311f4f;
-            border: 1px solid #6d4bae;
-            padding: 0.4rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            color: #efd9ff;
-            margin-left: 0.5rem;
-        }
-
-        .admin-item .edit-btn {
-            background: #2c3e66;
-            border-color: #5c7ebd;
+        .contact-link:hover {
+            background: #eef2ff;
+            border-color: #cbd5e1;
         }
 
         .footer {
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #281f3a;
-            color: #7a6a96;
-            font-size: 0.85rem;
+            padding: 48px 0 32px;
+            border-top: 1px solid #eef2f6;
+            margin-top: 60px;
+            color: #5b6e8c;
+            font-size: 14px;
         }
 
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #8e78b0;
-        }
-
-        @media (max-width: 700px) {
-            .top-bar {
+        @media (max-width: 680px) {
+            .header {
                 flex-direction: column;
-                padding: 1rem;
+                text-align: center;
             }
-            .cards .card {
-                width: 100%;
+            .grid {
+                gap: 20px;
             }
-            h1 {
-                font-size: 2.5rem;
+            .card {
+                padding: 24px 20px;
             }
-        }
-
-        button {
-            cursor: pointer;
-            transition: all 0.2s;
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    <div class="lang-switch">
-        <button onclick="setLanguage('en')" class="lang-btn">EN</button>
-        <button onclick="setLanguage('ua')" class="lang-btn">UA</button>
-    </div>
-    <div class="nav" id="nav-links">
-        <a href="#" onclick="scrollToTop()">A and I Studio</a>
-        <a href="#" onclick="scrollToAbout()" id="about-nav">About Us</a>
-        <span id="auth-buttons">
-            <button onclick="showLoginModal()" id="login-nav">Login</button>
-            <button onclick="showRegisterModal()" id="register-nav">Register</button>
-        </span>
-        <span id="user-info" style="display:none;">
-            <span id="welcome-user"></span>
-            <button onclick="logout()" id="logout-nav">Logout</button>
-            <button onclick="toggleAdminPanel()" id="admin-nav" style="display:none;">Admin Panel</button>
-        </span>
-    </div>
-</div>
-
-<div id="home-page">
-    <div class="hero">
-        <h1>A and I Studio</h1>
-        <p class="hero-subtitle" id="hero-text">Turning ideas into digital reality</p>
+<div class="container">
+    <div class="header">
+        <div class="logo">dev:andrew</div>
+        <div class="lang-group">
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ua">UA</button>
+        </div>
     </div>
 
-    <div id="products-container" class="cards">
-        <div class="loading">Loading products...</div>
-    </div>
-
-    <div class="about-section" id="about-section">
-        <h2 id="about-title">About Us</h2>
-        <p id="about-text-1">We are a team of professionals creating websites, applications and design since 2019. Client focus, innovation and aesthetics are our main principles.</p>
-    </div>
+    <div id="services-grid" class="grid"></div>
 </div>
 
 <div class="footer">
-    <p>2025 A and I Studio</p>
+    <p>andrew · freelance developer</p>
 </div>
 
-<div id="productModal" class="modal">
+<div id="service-modal" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeProductModal()">&times;</span>
+        <span class="close-modal" id="close-modal-btn">&times;</span>
         <h2 id="modal-title"></h2>
-        <p id="modal-description" style="margin: 1rem 0; line-height: 1.6;"></p>
-        <p><strong id="price-label">Price:</strong> <span id="modal-price"></span> UAH</p>
-        <p><strong id="duration-label">Duration:</strong> <span id="modal-duration"></span></p>
+        <div id="modal-description" class="modal-description"></div>
+        <div id="modal-price" style="font-weight: 500; margin-top: 8px;"></div>
+        <div id="modal-duration" style="color: #5b6e8c; margin-bottom: 16px;"></div>
+        <button class="contact-btn" id="open-contact-modal-btn">Contact me</button>
     </div>
 </div>
 
-<div id="loginModal" class="modal">
-    <div class="auth-container">
-        <span class="close-modal" onclick="closeLoginModal()">&times;</span>
-        <h2 id="login-title">Login</h2>
-        <input type="text" id="login-username" placeholder="Username">
-        <input type="password" id="login-password" placeholder="Password">
-        <button onclick="login()" id="login-btn">Login</button>
-        <div id="login-error" class="error-msg"></div>
-    </div>
-</div>
-
-<div id="registerModal" class="modal">
-    <div class="auth-container">
-        <span class="close-modal" onclick="closeRegisterModal()">&times;</span>
-        <h2 id="register-title">Register</h2>
-        <input type="text" id="register-username" placeholder="Username">
-        <input type="password" id="register-password" placeholder="Password">
-        <button onclick="register()" id="register-btn">Register</button>
-        <div id="register-error" class="error-msg"></div>
-    </div>
-</div>
-
-<div id="adminPanel" style="display:none;">
-    <div class="admin-section">
-        <h2 id="add-product-title">Add Product</h2>
-        <div class="admin-form">
-            <input type="text" id="product-name" placeholder="Product Name">
-            <textarea id="product-desc" placeholder="Description" rows="2"></textarea>
-            <input type="text" id="product-price" placeholder="Price UAH">
-            <input type="text" id="product-duration" placeholder="Duration days">
-            <button onclick="addProduct()">Add Product</button>
+<div id="contact-modal" class="modal">
+    <div class="modal-content contact-modal">
+        <span class="close-modal" id="close-contact-modal-btn">&times;</span>
+        <h2>Get in touch</h2>
+        <div class="contact-options">
+            <a href="https://t.me/yourusername" target="_blank" class="contact-link">Telegram</a>
+            <a href="https://discord.gg/yourinvite" target="_blank" class="contact-link">Discord</a>
         </div>
-        
-        <h3 id="manage-products-title">Manage Products</h3>
-        <div id="admin-products-list"></div>
     </div>
 </div>
 
-<div id="editModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeEditModal()">&times;</span>
-        <h2 id="edit-title">Edit Product</h2>
-        <input type="hidden" id="edit-id">
-        <input type="text" id="edit-name" placeholder="Name" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
-        <textarea id="edit-description" placeholder="Description" rows="3" style="width:100%; padding:0.5rem; margin:0.5rem 0;"></textarea>
-        <input type="text" id="edit-price" placeholder="Price" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
-        <input type="text" id="edit-duration" placeholder="Duration" style="width:100%; padding:0.5rem; margin:0.5rem 0;">
-        <button onclick="saveEdit()" style="background:#2a1b44; border:1px solid #6f4bc2; width:100%; padding:0.7rem; border-radius:0.6rem; color:white;">Save</button>
-    </div>
-</div>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-    import { getDatabase, ref, get, set, push, remove, update } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyChEAG2fgPYAhEVzmvBESET8dJ8n239vVo",
-        authDomain: "a-and-i-site.firebaseapp.com",
-        projectId: "a-and-i-site",
-        storageBucket: "a-and-i-site.firebasestorage.app",
-        messagingSenderId: "469953570090",
-        appId: "1:469953570090:web:1713a01167cd6e46f26a53",
-        measurementId: "G-7H4F0LXE9N"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const auth = getAuth(app);
-
-    window.currentUser = null;
-    window.currentLang = localStorage.getItem('lang') || 'en';
-    window.products = [];
-
+<script>
     const translations = {
         en: {
-            hero: 'Turning ideas into digital reality',
-            about_title: 'About Us',
-            about_text1: 'We are a team of professionals creating websites, applications and design since 2019. Client focus, innovation and aesthetics are our main principles.',
-            price: 'Price:',
-            duration: 'Duration:',
-            login: 'Login',
-            register: 'Register',
-            logout: 'Logout',
-            admin_panel: 'Admin Panel',
-            add_product: 'Add Product',
-            manage_products: 'Manage Products',
-            edit: 'Edit Product',
-            details: 'Details'
+            title: "freelance developer",
+            services: [
+                {
+                    name: "Websites",
+                    short: "Full‑stack websites, landing pages, admin panels.",
+                    description: "I build fast, responsive websites with React, Vue or vanilla JS. Backend with Node.js, PHP or Python. SEO, mobile-first, animations, API integrations, databases. From simple business cards to complex web apps.",
+                    price: "from $500",
+                    duration: "delivery: 7-14 days"
+                },
+                {
+                    name: "Applications",
+                    short: "Desktop & mobile apps, cross‑platform solutions.",
+                    description: "Cross-platform apps using Flutter, React Native or Electron. Performance, clean UI, offline sync, notifications, payment integration. I ship applications for Windows, macOS, iOS and Android.",
+                    price: "from $800",
+                    duration: "delivery: 14-21 days"
+                },
+                {
+                    name: "Minecraft plugins",
+                    short: "Custom plugins for Spigot, Paper, Bukkit.",
+                    description: "Custom mechanics, minigames, economy, quests, custom mobs, advanced gui, anti-cheat modules, or anything you need for your server. I write optimized Java code and provide full support.",
+                    price: "from $200",
+                    duration: "delivery: 3-10 days"
+                },
+                {
+                    name: "Minecraft modpacks",
+                    short: "Optimized modpack builds, custom configs.",
+                    description: "I create stable, well-optimized modpacks for Forge/Fabric. Questlines, progression, balancing, server-ready packs, performance tweaks. I also help with custom mod integration and bug fixing.",
+                    price: "from $250",
+                    duration: "delivery: 5-14 days"
+                }
+            ]
         },
         ua: {
-            hero: 'Втілюємо ідеї в цифрову реальність',
-            about_title: 'Про нас',
-            about_text1: 'Ми команда професіоналів, яка створює сайти, застосунки та дизайн з 2019 року. Клієнтоорієнтованість, інновації та естетика - наші головні принципи.',
-            price: 'Ціна:',
-            duration: 'Термін:',
-            login: 'Вхід',
-            register: 'Реєстрація',
-            logout: 'Вихід',
-            admin_panel: 'Панель адміна',
-            add_product: 'Додати товар',
-            manage_products: 'Управління товарами',
-            edit: 'Редагувати товар',
-            details: 'Детальніше'
+            title: "фріланс розробник",
+            services: [
+                {
+                    name: "Вебсайти",
+                    short: "Повноцінні сайти, лендінги, адмін-панелі.",
+                    description: "Створюю швидкі сучасні сайти на React, Vue або чистому JS. Бекенд: Node.js, PHP, Python. SEO, адаптивність, анімації, інтеграція API, бази даних — від візитівки до великих вебзастосунків.",
+                    price: "від 500$",
+                    duration: "термін: 7-14 днів"
+                },
+                {
+                    name: "Програми",
+                    short: "Десктопні та мобільні застосунки.",
+                    description: "Кроссплатформені застосунки Flutter, React Native або Electron. Продуктивність, чистий UI, офлайн, пуші, платіжні системи. Розробляю під Windows, macOS, iOS та Android.",
+                    price: "від 800$",
+                    duration: "термін: 14-21 днів"
+                },
+                {
+                    name: "Плагіни Minecraft",
+                    short: "Плагіни для Spigot, Paper, Bukkit.",
+                    description: "Кастомна механіка, мініігри, економіка, квести, кастомні моби, GUI, античит або будь-яка ідея для твого сервера. Java-код, підтримка, оптимізація.",
+                    price: "від 200$",
+                    duration: "термін: 3-10 днів"
+                },
+                {
+                    name: "Збірки Minecraft",
+                    short: "Готові модпаки, налаштування, оптимізація.",
+                    description: "Роблю стабільні, оптимізовані збірки Forge/Fabric. Квести, прогресія, баланс, готові до сервера. Допомога з кастомними модами та виправлення багів.",
+                    price: "від 250$",
+                    duration: "термін: 5-14 днів"
+                }
+            ]
         }
     };
 
-    function updateLanguage() {
-        const t = translations[window.currentLang];
-        document.getElementById('hero-text').innerText = t.hero;
-        document.getElementById('about-title').innerText = t.about_title;
-        document.getElementById('about-text-1').innerText = t.about_text1;
-        document.getElementById('price-label').innerHTML = t.price;
-        document.getElementById('duration-label').innerHTML = t.duration;
-        document.getElementById('login-title').innerText = t.login;
-        document.getElementById('register-title').innerText = t.register;
-        document.getElementById('login-btn').innerText = t.login;
-        document.getElementById('register-btn').innerText = t.register;
-        document.getElementById('add-product-title').innerText = t.add_product;
-        document.getElementById('manage-products-title').innerText = t.manage_products;
-        document.getElementById('edit-title').innerText = t.edit;
-        
-        const navAbout = document.getElementById('about-nav');
-        const navLogin = document.getElementById('login-nav');
-        const navRegister = document.getElementById('register-nav');
-        const navLogout = document.getElementById('logout-nav');
-        const navAdmin = document.getElementById('admin-nav');
-        
-        if (navAbout) navAbout.innerText = t.about_title;
-        if (navLogin) navLogin.innerText = t.login;
-        if (navRegister) navRegister.innerText = t.register;
-        if (navLogout) navLogout.innerText = t.logout;
-        if (navAdmin) navAdmin.innerText = t.admin_panel;
-    }
+    let currentLang = localStorage.getItem('lang') || 'en';
+    let currentServiceId = null;
+    let selectedServiceObj = null;
 
-    window.setLanguage = function(lang) {
-        window.currentLang = lang;
+    function setLanguage(lang) {
+        currentLang = lang;
         localStorage.setItem('lang', lang);
-        updateLanguage();
-        renderProducts();
-    };
-
-    async function loadProducts() {
-        const productsRef = ref(database, 'products');
-        const snapshot = await get(productsRef);
-        if (snapshot.exists()) {
-            window.products = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
-        } else {
-            const demoProducts = [
-                { name: 'Створення сайту', description: 'Повний цикл створення сучасного адаптивного сайту. React, Node.js, оптимізація, SEO, адмін-панель.', price: '5000', duration: '14 days' },
-                { name: 'Створення програми', description: 'Розробка мобільних та десктопних застосунків під iOS, Android, Windows. Flutter, React Native, Java.', price: '8000', duration: '21 days' },
-                { name: 'Створення збірки майнкрафт', description: 'Унікальна модпак збірка для Minecraft з кастомними модами, налаштуваннями та оптимізацією.', price: '3500', duration: '10 days' }
-            ];
-            for (const prod of demoProducts) {
-                await push(ref(database, 'products'), prod);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
             }
-            const newSnapshot = await get(productsRef);
-            window.products = Object.entries(newSnapshot.val()).map(([id, data]) => ({ id, ...data }));
-        }
-        renderProducts();
-        if (window.currentUser && window.currentUser.email === 'admin@aandistudio.com') {
-            renderAdminList();
-        }
+        });
+        renderServices();
     }
 
-    function renderProducts() {
-        const container = document.getElementById('products-container');
+    function renderServices() {
+        const data = translations[currentLang];
+        const container = document.getElementById('services-grid');
         if (!container) return;
         
-        if (window.products.length === 0) {
-            container.innerHTML = '<p style="text-align:center; width:100%; color:#9b87b5;">No products yet.</p>';
-            return;
-        }
-        
-        const t = translations[window.currentLang];
-        container.innerHTML = window.products.map(product => `
-            <div class="card" onclick="showProductDetails('${product.id}')">
-                <h3>${escapeHtml(product.name)}</h3>
-                <div class="price">${escapeHtml(product.price)} UAH</div>
-                <div class="duration">${escapeHtml(product.duration)}</div>
-                <p>${escapeHtml(product.description.substring(0, 70))}...</p>
-                <button class="lang-btn details-btn" onclick="event.stopPropagation(); showProductDetails('${product.id}')">${t.details} →</button>
-            </div>
-        `).join('');
+        container.innerHTML = '';
+        data.services.forEach((service, idx) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-idx', idx);
+            card.innerHTML = `
+                <div class="card-icon">◧</div>
+                <h3>${escapeHtml(service.name)}</h3>
+                <p>${escapeHtml(service.short)}</p>
+                <div class="price">${escapeHtml(service.price)}</div>
+                <div class="duration">${escapeHtml(service.duration)}</div>
+                <div class="badge">details →</div>
+            `;
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openServiceModal(idx);
+            });
+            container.appendChild(card);
+        });
     }
 
-    window.showProductDetails = function(productId) {
-        const product = window.products.find(p => p.id === productId);
-        if (!product) return;
-        const t = translations[window.currentLang];
-        document.getElementById('modal-title').innerText = product.name;
-        document.getElementById('modal-description').innerText = product.description;
-        document.getElementById('modal-price').innerText = product.price;
-        document.getElementById('modal-duration').innerText = product.duration;
-        document.getElementById('productModal').style.display = 'flex';
-    };
+    function openServiceModal(serviceIdx) {
+        const data = translations[currentLang];
+        const service = data.services[serviceIdx];
+        if (!service) return;
+        selectedServiceObj = service;
+        document.getElementById('modal-title').innerText = service.name;
+        document.getElementById('modal-description').innerHTML = service.description.replace(/\n/g, '<br>');
+        document.getElementById('modal-price').innerHTML = `<strong>Price:</strong> ${service.price}`;
+        document.getElementById('modal-duration').innerHTML = `<strong>Delivery:</strong> ${service.duration}`;
+        
+        const modal = document.getElementById('service-modal');
+        modal.style.display = 'flex';
+    }
+
+    function openContactModal() {
+        const contactModal = document.getElementById('contact-modal');
+        contactModal.style.display = 'flex';
+    }
+
+    function closeAllModals() {
+        document.getElementById('service-modal').style.display = 'none';
+        document.getElementById('contact-modal').style.display = 'none';
+    }
 
     function escapeHtml(str) {
         if (!str) return '';
@@ -641,153 +452,24 @@
         });
     }
 
-    window.addProduct = async function() {
-        const name = document.getElementById('product-name').value;
-        const description = document.getElementById('product-desc').value;
-        const price = document.getElementById('product-price').value;
-        const duration = document.getElementById('product-duration').value;
-        
-        if (!name || !description || !price || !duration) {
-            alert('Please fill all fields');
-            return;
-        }
-        
-        const newProduct = { name, description, price, duration, created_at: new Date().toISOString() };
-        await push(ref(database, 'products'), newProduct);
-        
-        document.getElementById('product-name').value = '';
-        document.getElementById('product-desc').value = '';
-        document.getElementById('product-price').value = '';
-        document.getElementById('product-duration').value = '';
-        
-        await loadProducts();
-    };
-
-    window.deleteProduct = async function(id) {
-        if (confirm('Delete this product?')) {
-            await remove(ref(database, `products/${id}`));
-            await loadProducts();
-        }
-    };
-
-    window.editProduct = function(id, name, description, price, duration) {
-        document.getElementById('edit-id').value = id;
-        document.getElementById('edit-name').value = name;
-        document.getElementById('edit-description').value = description;
-        document.getElementById('edit-price').value = price;
-        document.getElementById('edit-duration').value = duration;
-        document.getElementById('editModal').style.display = 'flex';
-    };
-
-    window.saveEdit = async function() {
-        const id = document.getElementById('edit-id').value;
-        const name = document.getElementById('edit-name').value;
-        const description = document.getElementById('edit-description').value;
-        const price = document.getElementById('edit-price').value;
-        const duration = document.getElementById('edit-duration').value;
-        
-        await update(ref(database, `products/${id}`), { name, description, price, duration });
-        closeEditModal();
-        await loadProducts();
-    };
-
-    function renderAdminList() {
-        const container = document.getElementById('admin-products-list');
-        if (!container) return;
-        
-        container.innerHTML = window.products.map(product => `
-            <div class="admin-item">
-                <span><strong>${escapeHtml(product.name)}</strong> - ${escapeHtml(product.price)} UAH</span>
-                <div>
-                    <button onclick="deleteProduct('${product.id}')">Delete</button>
-                    <button class="edit-btn" onclick="editProduct('${product.id}', '${escapeHtml(product.name)}', '${escapeHtml(product.description)}', '${escapeHtml(product.price)}', '${escapeHtml(product.duration)}')">Edit</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    window.showLoginModal = function() {
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('login-error').innerText = '';
-    };
-    window.closeLoginModal = function() { document.getElementById('loginModal').style.display = 'none'; };
-    window.showRegisterModal = function() {
-        document.getElementById('registerModal').style.display = 'flex';
-        document.getElementById('register-error').innerText = '';
-    };
-    window.closeRegisterModal = function() { document.getElementById('registerModal').style.display = 'none'; };
-    window.closeProductModal = function() { document.getElementById('productModal').style.display = 'none'; };
-    window.closeEditModal = function() { document.getElementById('editModal').style.display = 'none'; };
-    window.scrollToAbout = function() { document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' }); };
-    window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
-
-    window.login = async function() {
-        const email = document.getElementById('login-username').value + '@aandistudio.com';
-        const password = document.getElementById('login-password').value;
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            closeLoginModal();
-        } catch (error) {
-            document.getElementById('login-error').innerText = 'Invalid credentials';
-        }
-    };
-
-    window.register = async function() {
-        const username = document.getElementById('register-username').value;
-        const password = document.getElementById('register-password').value;
-        const email = username + '@aandistudio.com';
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            closeRegisterModal();
-        } catch (error) {
-            document.getElementById('register-error').innerText = error.message;
-        }
-    };
-
-    window.logout = async function() {
-        await signOut(auth);
-    };
-
-    window.toggleAdminPanel = function() {
-        const panel = document.getElementById('adminPanel');
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-        if (panel.style.display === 'block') {
-            renderAdminList();
-        }
-    };
-
-    onAuthStateChanged(auth, async (user) => {
-        window.currentUser = user;
-        const authButtons = document.getElementById('auth-buttons');
-        const userInfo = document.getElementById('user-info');
-        const welcomeSpan = document.getElementById('welcome-user');
-        const adminNav = document.getElementById('admin-nav');
-        
-        if (user) {
-            authButtons.style.display = 'none';
-            userInfo.style.display = 'inline-flex';
-            welcomeSpan.innerText = user.email.split('@')[0];
-            if (user.email === 'admin@aandistudio.com') {
-                adminNav.style.display = 'inline-block';
-            } else {
-                adminNav.style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'none';
-            }
-        } else {
-            authButtons.style.display = 'inline-flex';
-            userInfo.style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'none';
-        }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            if (lang === 'en' || lang === 'ua') setLanguage(lang);
+        });
     });
 
-    window.onclick = function(e) {
+    document.getElementById('close-modal-btn').addEventListener('click', closeAllModals);
+    document.getElementById('close-contact-modal-btn').addEventListener('click', closeAllModals);
+    document.getElementById('open-contact-modal-btn').addEventListener('click', openContactModal);
+
+    window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal')) {
             e.target.style.display = 'none';
         }
-    };
+    });
 
-    updateLanguage();
-    loadProducts();
+    setLanguage(currentLang);
 </script>
 </body>
 </html>
