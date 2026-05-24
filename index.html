@@ -16,12 +16,16 @@
             font-family: system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif;
             color: #e2e2e6;
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
+            flex: 1;
         }
 
         .header {
@@ -287,13 +291,27 @@
             max-width: 800px;
         }
 
-        .footer {
+        .footer-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-card {
+            background: #111115;
+            border: 1px solid #2a2a35;
+            border-radius: 28px;
+            padding: 20px 32px;
             text-align: center;
-            padding: 32px 0 40px;
-            border-top: 1px solid #2a2a35;
-            margin-top: 20px;
-            color: #6b6b78;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-card p {
+            color: #8b8b98;
             font-size: 14px;
+            margin: 0;
         }
 
         @media (max-width: 680px) {
@@ -309,6 +327,9 @@
             }
             .about-section {
                 padding: 32px 24px;
+            }
+            .footer-card {
+                padding: 16px 24px;
             }
         }
     </style>
@@ -329,11 +350,15 @@
     <div class="about-section" id="about-section">
         <h2 id="about-title">About us</h2>
         <p id="about-text">We are a team of young guys who know how to do a lot of things, so we offer you a lot of fun for your money.</p>
-        <footer>
-            © 2026 A and I studio | Всі права захищені
-        </footer>
     </div>
 </div>
+
+<div class="footer-wrapper">
+    <div class="footer-card">
+        <p id="footer-text">© 2026 A and I studio | All rights reserved</p>
+    </div>
+</div>
+
 <div id="service-modal" class="modal">
     <div class="modal-content">
         <span class="close-modal" id="close-modal-btn">&times;</span>
@@ -443,6 +468,7 @@
         renderServices();
         renderAbout();
         renderContactModalText();
+        renderFooter();
     }
 
     function renderAbout() {
@@ -454,6 +480,15 @@
         } else {
             aboutTitle.innerText = 'Про нас';
             aboutText.innerText = 'Ми команда молодих хлопців котрі вміють багато чого, тому любий капріз за ваші гроші.';
+        }
+    }
+
+    function renderFooter() {
+        const footerText = document.getElementById('footer-text');
+        if (currentLang === 'en') {
+            footerText.innerText = '© 2026 A and I studio | All rights reserved';
+        } else {
+            footerText.innerText = '© 2026 A and I studio | Всі права захищені';
         }
     }
 
